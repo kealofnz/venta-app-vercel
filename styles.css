@@ -1,0 +1,460 @@
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #28a745;
+    --secondary-hover-color: #218838;
+    --danger-color: #dc3545;
+    --danger-hover-color: #c82333;
+    --tertiary-color: #17a2b8;
+    --tertiary-hover-color: #138496;
+    --background-color: #f0f2f5;
+    --light-bg-color: #f8f8f8;
+    --light-text-color: #ffffff;
+    --dark-text-color: #333333;
+    --border-color: #cccccc;
+    --border-radius: 5px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --font-family: 'Arial', sans-serif;
+    --font-size-base: 1em;
+    --font-size-heading: 1.5em;
+    --spacing-base: 10px;
+    --spacing-lg: 20px;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--dark-text-color);
+    margin: 0;
+    padding: var(--spacing-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    background-color: var(--light-text-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    transition: box-shadow var(--transition-speed);
+}
+
+.container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.logo {
+    height: 50px;
+    margin-right: var(--spacing-base);
+}
+
+h1 {
+    text-align: center;
+    color: var(--dark-text-color);
+    font-size: var(--font-size-heading);
+    margin: 0;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-base);
+    color: var(--dark-text-color);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+.input-field, select, textarea {
+    width: 100%;
+    padding: var(--spacing-base);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-base);
+    box-sizing: border-box;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.input-field:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.dropdown {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--light-text-color);
+    position: absolute;
+    width: calc(100% - 22px);
+    z-index: 1000;
+    box-sizing: border-box;
+    transition: all var(--transition-speed);
+}
+
+.dropdown li {
+    padding: var(--spacing-base);
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color: var(--light-bg-color);
+}
+
+/* Estilo para el contenedor del campo de búsqueda de cliente */
+.client-search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-base);
+}
+
+/* Estilo para el campo de búsqueda de cliente */
+#clientSearch {
+    flex: 1;
+    padding: var(--spacing-base);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    margin-right: var(--spacing-base);
+}
+
+#clientList, #sellerList, #productList, #clientListModal, #sellerListModal {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+#clientList li, #sellerList li, #productList li, #clientListModal li, #sellerListModal li {
+    padding: var(--spacing-base);
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-speed);
+}
+
+#clientList li:hover, #sellerList li:hover, #productList li:hover, #clientListModal li:hover, #sellerListModal li:hover {
+    background-color: var(--light-bg-color);
+}
+
+.btn-add-client {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-speed);
+    flex-shrink: 0;
+    width: auto;
+}
+
+.btn-add-client:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.btn-add {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: var(--spacing-base);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    width: 100%;
+    margin-top: var(--spacing-base);
+    transition: background-color var(--transition-speed);
+}
+
+.btn-add:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.btn-submit {
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+    padding: var(--spacing-base);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    width: 100%;
+    margin-top: var(--spacing-base);
+    transition: background-color var(--transition-speed);
+}
+
+.btn-submit:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+.btn-delete {
+    background-color: var(--danger-color);
+    color: var(--light-text-color);
+    padding: var(--spacing-base);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    width: 100%;
+    margin-top: var(--spacing-base);
+    transition: background-color var(--transition-speed);
+}
+
+.btn-delete:hover {
+    background-color: var(--danger-hover-color);
+}
+
+.btn-done {
+    background-color: var(--tertiary-color);
+    color: var(--light-text-color);
+    padding: var(--spacing-base);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    width: 100%;
+    margin-top: var(--spacing-lg);
+    transition: background-color var(--transition-speed);
+}
+
+.btn-done:hover {
+    background-color: var(--tertiary-hover-color);
+}
+
+#cart {
+    margin-top: var(--spacing-lg);
+}
+
+#cartTableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#cartTable {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    margin-top: var(--spacing-base);
+    box-shadow: var(--box-shadow);
+}
+
+#cartTable th, #cartTable td {
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-base);
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+#cartTable th {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+#cartTable td {
+    background-color: var(--light-bg-color);
+}
+
+input.quantity, input.discount {
+    width: 70px;
+    padding: var(--spacing-base);
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: var(--spacing-base);
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: var(--light-text-color);
+    margin: 5% auto;
+    padding: var(--spacing-lg);
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--box-shadow);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color var(--transition-speed);
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#ventasContainer {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-base);
+    background-color: #f9f9f9;
+    border-radius: var(--border-radius);
+}
+
+#ventasContainer div {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#ventasContainer div:last-child {
+    border-bottom: none;
+}
+
+/* Contenedor del campo de contraseña */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+#password {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; /* Espacio para el botón de mostrar contraseña */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    box-sizing: border-box;
+}
+
+/* Estilo del botón para mostrar/ocultar contraseña */
+#togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Ajusta la distancia desde el borde derecho */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#togglePassword img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7; /* Inicialmente ligeramente transparente */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto de hover en el botón */
+#togglePassword:hover img {
+    opacity: 1; /* Hacer el ícono completamente visible al pasar el cursor */
+    transform: scale(1.1); /* Ampliar ligeramente el ícono en hover */
+}
+
+#togglePassword:focus {
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+
+    label, .input-field, select, textarea, .btn {
+        font-size: 0.9em;
+    }
+
+    #productSearch, #clientSearchModal, #sellerSearchModal, #productList li, #clientListModal li, #sellerListModal li {
+        font-size: 0.9em;
+    }
+
+    input.quantity, input.discount {
+        width: 50px;
+        padding: 5px;
+        font-size: 0.8em;
+    }
+
+    .btn-add-client {
+        margin-top: var(--spacing-base);
+    }
+
+    #togglePassword {
+        right: 5px;
+    }
+}
+
+#successAnimation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+#newClientModal .modal-content {
+    max-width: 500px;
+    padding: 20px;
+}

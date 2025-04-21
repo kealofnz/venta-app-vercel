@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVERSIONES GM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://www.possystems.com/images/company/Logo256px.png" alt="Logo" class="logo">
+            <h1>INVERSIONES GM</h1>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginContainer">
+            <h2>Iniciar Sesión (Solo Email)</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" class="input-field" required placeholder="tu.correo@ejemplo.com">
+                </div>
+                <button type="submit" class="btn btn-submit">Iniciar Sesión</button>
+            </form>
+            <div id="loginError" class="error-message" style="display:none;"></div>
+        </div>
+
+        <!-- Sales Form (inicialmente oculto) -->
+        <form id="salesForm" style="display:none;">
+            <div class="form-group">
+                <label for="saleId">ID Venta:</label>
+                <input type="text" id="saleId" name="saleId" class="input-field" readonly>
+            </div>
+            <div class="form-group">
+                <label for="saleDate">Fecha Venta:</label>
+                <input type="date" id="saleDate" name="saleDate" class="input-field" required>
+            </div>
+            <div class="form-group">
+                <label for="sellerSearch">Vendedor:</label>
+                 <!-- Este campo mostrará el vendedor logueado y permitirá seleccionar otro -->
+                <div class="client-search-container">
+                    <input type="text" id="sellerSearch" class="input-field" placeholder="Vendedor asignado..." readonly>
+                    <button type="button" class="btn-add-client" onclick="openSellerModal()">Cambiar Vendedor</button>
+                </div>
+                 <!-- Guardaremos el ID y email aquí -->
+                 <input type="hidden" id="sellerIdHidden">
+                 <input type="hidden" id="sellerEmailHidden">
+            </div>
+            <div class="form-group">
+                <label for="clientSearch">Cliente:</label>
+                <div class="client-search-container">
+                    <input type="text" id="clientSearch" class="input-field" placeholder="Buscar y seleccionar cliente..." readonly>
+                    <button type="button" class="btn-add-client" onclick="openClientModal()">Seleccionar Cliente</button>
+                </div>
+                 <!-- Guardaremos el ID del cliente aquí -->
+                 <input type="hidden" id="clientIdHidden">
+            </div>
+            <div class="form-group">
+                <label for="paymentType">Tipo de Pago:</label>
+                <select id="paymentType" name="paymentType" class="input-field" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="EFECTIVO">EFECTIVO</option>
+                    <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+                    <option value="TARJETA">TARJETA</option>
+                    <option value="CREDITO">CRÉDITO</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comments">Novedades/Comentarios:</label>
+                <textarea id="comments" name="comments" class="input-field" placeholder="Añadir comentarios..."></textarea>
+            </div>
+
+            <!-- Carrito de Compras -->
+            <div id="cart">
+                <h2>Carrito de Compras</h2>
+                <button type="button" class="btn btn-add" onclick="openProductModal()">Buscar y Añadir Productos</button>
+                <div id="cartTableContainer">
+                    <table id="cartTable">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>P. Unitario</th>
+                                <th>Descuento</th>
+                                <th>Subtotal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Las filas del carrito se añadirán aquí por JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="cartEmptyMessage" style="text-align: center; padding: 15px; display: none;">El carrito está vacío.</div>
+            </div>
+
+            <!-- Totales -->
+            <div class="totals">
+                <div class="form-group">
+                    <label for="totalDiscounts">Total Descuentos Items:</label>
+                    <input type="text" id="totalDiscounts" name="totalDiscounts" class="input-field" value="0.00" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="totalSale">Total Venta:</label>
+                    <input type="text" id="totalSale" name="totalSale" class="input-field" value="0.00" readonly>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit" id="submitSaleButton">Registrar Venta y Imprimir Factura</button>
+            <div id="submitError" class="error-message" style="display:none;"></div>
+        </form>
+
+        <!-- Modals -->
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeProductModal()">×</span>
+                <h2>Buscar Producto</h2>
+                <input type="text" id="productSearchInput" placeholder="Buscar por nombre o ID..." class="input-field">
+                <ul id="productList"></ul>
+                <div id="productSearchMessage"></div>
+            </div>
+        </div>
+        <div id="clientModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeClientModal()">×</span>
+                <h2>Buscar Cliente</h2>
+                <input type="text" id="clientSearchModalInput" placeholder="Buscar por nombre o ID..." class="input-field">
+                <ul id="clientListModal"></ul>
+                 <div id="clientSearchMessage"></div>
+            </div>
+        </div>
+        <div id="sellerModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeSellerModal()">×</span>
+                <h2>Buscar Vendedor</h2>
+                <input type="text" id="sellerSearchModalInput" placeholder="Buscar por nombre, apellido o ID..." class="input-field">
+                <ul id="sellerListModal"></ul>
+                 <div id="sellerSearchMessage"></div>
+            </div>
+        </div>
+
+        <!-- Animación de Éxito (oculta) -->
+        <div id="successAnimation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1001;">
+             <img src="https://c.tenor.com/0AVbKGY_MxMAAAAC/check-mark-verified.gif" alt="Success" style="width:100px; height:auto;">
+        </div>
+
+    </div> <!-- Fin .container -->
+
+    <script src="script.js"></script>
+</body>
+</html>
