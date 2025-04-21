@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
         } else {
             // Validar cada producto en el array
             for (const [index, product] of products.entries()) {
-                if (!product.detailSaleId) { validationError = `Falta ID Detalle Venta para producto ${index + 1}.`; break; }
+                // if (!product.detailSaleId) { validationError = `Falta ID Detalle Venta para producto ${index + 1}.`; break; }
                 if (!product.productId) { validationError = `Falta ID Producto para producto ${index + 1}.`; break; }
                 if (!product.quantity || product.quantity <= 0) { validationError = `Cantidad inválida para producto ${product.productId || index + 1}.`; break; }
                 if (product.unitPrice === undefined || product.unitPrice < 0) { validationError = `Precio unitario inválido para producto ${product.productId || index + 1}.`; break; }

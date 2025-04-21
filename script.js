@@ -293,22 +293,25 @@ function clearForm(clearSeller = true) {
 }
 
 // --- MANEJO DEL CARRITO ---
-function getCartItems() {
-    const items = [];
-    cartTableBody.querySelectorAll('tr').forEach(row => {
-        const quantityInput = row.querySelector('.quantity');
-        const discountInput = row.querySelector('.discount');
-        items.push({
-            productId: row.dataset.productId,
-            productName: row.dataset.productName, // Asegúrate de guardar esto en el dataset
-            unitPrice: parseFloat(row.dataset.productPrice) || 0,
-            quantity: parseInt(quantityInput ? quantityInput.value : 0) || 0,
-            discount: parseFloat(discountInput ? discountInput.value : 0) || 0,
-            subtotal: parseFloat(row.querySelector('.subtotal').textContent) || 0
-        });
-    });
-    return items;
-}
+ function getCartItems() {
+     const items = [];
+     cartTableBody.querySelectorAll('tr').forEach(row => {
+         const quantityInput = row.querySelector('.quantity');
+         const discountInput = row.querySelector('.discount');
+         items.push({
+             // --- AÑADIR ESTA LÍNEA ---
+             detailSaleId: generateDetailSaleId(), // Generar ID único para esta línea
+             // --- FIN LÍNEA AÑADIDA ---
+             productId: row.dataset.productId,
+             productName: row.dataset.productName,
+             unitPrice: parseFloat(row.dataset.productPrice) || 0,
+             quantity: parseInt(quantityInput ? quantityInput.value : 0) || 0,
+             discount: parseFloat(discountInput ? discountInput.value : 0) || 0,
+             subtotal: parseFloat(row.querySelector('.subtotal').textContent) || 0
+         });
+     });
+     return items;
+ }
 
 function addProductToCart(product) {
     // product es el objeto devuelto por la API { "ID PRODUCTO": "...", "NOMBRE PRODUCTO": "...", "PRECIO VENTA": "..." }
