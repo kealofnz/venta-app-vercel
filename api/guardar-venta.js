@@ -65,7 +65,7 @@ module.exports = async (req, res) => {
 
             // 1. INSERT en VENTA
             // Asegúrate que los nombres de columna coincidan exactamente con tu tabla VENTA
-            const sqlVenta = "INSERT INTO VENTA (`ID VENTA`, `ID CLIENTE`, `FECHA DE VENTA`, `ID VENDEDOR`, `EMAIL`, `FORMA PAGO`, `NOVEDADES`, `ESTADO`, `DESCUENTO`, `HORA VENTA`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURTIME())";
+            const sqlVenta = "INSERT INTO VENTA (`ID VENTA`, `ID CLIENTE`, `FECHA DE VENTA`, `ID VENDEDOR`, `EMAIL`, `FORMA DE PAGO`, `NOVEDADES`, `ESTADO`, `DESCUENTO`, `HORA VENTA`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURTIME())";
             const estadoVenta = 'COMPLETADA'; // O 'PENDIENTE' si hay más pasos
             // Prepara los parámetros en el orden correcto. Usa null si sellerId no vino.
             const paramsVenta = [
